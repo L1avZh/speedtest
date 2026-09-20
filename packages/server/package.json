@@ -1,0 +1,32 @@
+{
+  "name": "@speedtest/server",
+  "version": "1.0.0",
+  "description": "Local-only HTTP API + static host for the SpeedTest web UI, plus a self-hostable measurement-engine server and a file-backed history/settings store shared with the CLI.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./storage": { "types": "./dist/storage.d.ts", "import": "./dist/storage.js" },
+    "./engineRoutes": { "types": "./dist/engineRoutes.d.ts", "import": "./dist/engineRoutes.js" }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@speedtest/engine": "^1.0.0",
+    "fastify": "^5.12.5",
+    "@fastify/static": "^10.1.4",
+    "@fastify/cors": "^11.3.0",
+    "get-port": "^7.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vitest": "^5.0.1",
+    "@types/node": "^22.5.0"
+  }
+}

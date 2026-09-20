@@ -1,0 +1,30 @@
+{
+  "name": "@speedtest/cli",
+  "version": "1.0.0",
+  "description": "Professional terminal internet speed test — real measurements, JSON/CSV output, and a --web mode that launches the local Web UI.",
+  "type": "module",
+  "bin": {
+    "speedtest": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && chmod +x dist/index.js && npm run copy-web",
+    "copy-web": "node -e \"const fs=require('fs');if(fs.existsSync('../web/dist')){fs.rmSync('web-dist',{recursive:true,force:true});fs.cpSync('../web/dist','web-dist',{recursive:true})}\"",
+    "dev": "tsc -p tsconfig.json --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@speedtest/engine": "^1.0.0",
+    "@speedtest/server": "^1.0.0",
+    "commander": "^12.1.0",
+    "picocolors": "^1.0.1",
+    "prompts": "^2.4.2",
+    "open": "^10.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "@types/node": "^22.5.0",
+    "@types/prompts": "^2.4.9"
+  }
+}
