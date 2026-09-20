@@ -3,23 +3,11 @@
 A professional internet speed test — real measurements only, no fake data, no telemetry.
 One shared network engine, two interfaces: a polished terminal UI and a local web app.
 
-```
-$ speedtest
+<p align="center">
+  <img src="docs/demo/cli-demo.gif" alt="speedtest running in the terminal: server selection, latency, live download/upload progress bars, and the final results report" width="720">
+</p>
 
-╭──────────────────────────────────────────────╮
-│                   SPEEDTEST                   │
-╰──────────────────────────────────────────────╯
-
-✓ Server: Cloudflare Global Network (Nearest edge (anycast))
-✓ Latency 8.4 ms · Jitter 1.7 ms · Loss 0.0%
-
-Download  ████████████████████████████░░░░  487.3 Mbps
-Upload    ███████████████████░░░░░░░░░░░░░   91.4 Mbps
-
-──────────────────────────────────────────────
-Network Quality: Excellent
-Test completed in 18.4s
-```
+*(Recorded against a locally throttled demo server to keep the GIF short and reliable rather than hammering the public test server repeatedly — see [`tools/demo-recorder`](tools/demo-recorder). The exact same code path runs against the real internet by default.)*
 
 ## Features
 
@@ -36,7 +24,7 @@ Test completed in 18.4s
 Requires Node.js 18.17+ (fetch with streaming request bodies).
 
 ```bash
-git clone <this-repo>
+git clone https://github.com/L1avZh/speedtest.git
 cd speedtest
 npm install
 npm run build
@@ -85,6 +73,10 @@ speedtest history --clear        # Delete all saved history
 ```bash
 speedtest --web
 ```
+
+<p align="center">
+  <img src="docs/demo/web-demo.gif" alt="speedtest Web UI: idle dial, live phase transitions with a real-time download/upload graph, and the results dashboard" width="620">
+</p>
 
 Starts a local API + static server (default: an automatically chosen free port, printed to the terminal) and opens it in your default browser. The page runs the *same* `@speedtest/engine` package directly in-browser against the real client network path — the local server's job is settings/history persistence and serving the app, not proxying your test traffic (proxying through an extra local hop would make the measurement less accurate, not more).
 
